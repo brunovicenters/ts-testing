@@ -1,6 +1,27 @@
-import { gerStringInfo, toUpperCase } from "../app/Utils";
+import { gerStringInfo, StringUtils, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
+  describe("StringUtils tests", () => {
+    let sut;
+
+    beforeEach(() => {
+      sut = new StringUtils();
+      console.log("Setup");
+    });
+
+    afterEach(() => {
+      // clearing mocks
+      console.log("Teardown");
+    });
+
+    it("Should return correct upperCase", () => {
+      const actual = sut.toUpperCase("Random");
+
+      expect(actual).toBe("RANDOM");
+      console.log("Actual test");
+    });
+  });
+
   describe("toUpperCase examples", () => {
     it.each([
       { input: "Random", expected: "RANDOM" },
