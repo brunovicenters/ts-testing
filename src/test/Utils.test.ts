@@ -6,19 +6,33 @@ describe("Utils test suite", () => {
 
     beforeEach(() => {
       sut = new StringUtils();
-      console.log("Setup");
-    });
-
-    afterEach(() => {
-      // clearing mocks
-      console.log("Teardown");
     });
 
     it("Should return correct upperCase", () => {
       const actual = sut.toUpperCase("Random");
 
       expect(actual).toBe("RANDOM");
-      console.log("Actual test");
+    });
+
+    it("Should throw error on invalid argument - function", () => {
+      function expectError() {
+        const actual = sut.toUpperCase();
+      }
+
+      expect(expectError).toThrow();
+      // you can specify the error message
+      // expect(expectError).toThrow("arg is required");
+    });
+
+    it("Should throw error on invalid argument - try catch block", (done) => {
+      try {
+        sut.toUpperCase("");
+        done("GetStringInfo should have thrown an error for invalid arg!");
+      } catch (e) {
+        expect(e).toBeInstanceOf(Error);
+        expect(e).toHaveProperty("message", "arg is required");
+        done();
+      }
     });
   });
 
