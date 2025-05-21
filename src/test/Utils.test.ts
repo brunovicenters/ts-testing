@@ -1,16 +1,15 @@
 import { gerStringInfo, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
-  test("Should return uppercase of valid string", () => {
-    // Arrange --
-    const sut = toUpperCase;
-    const expected = "HELLO";
-
-    // Act --
-    const actual = sut("hello");
-
-    // Assert --
-    expect(actual).toBe(expected);
+  describe("toUpperCase examples", () => {
+    it.each([
+      { input: "Random", expected: "RANDOM" },
+      { input: "aBC", expected: "ABC" },
+      { input: "DeF", expected: "DEF" },
+    ])("should return $expected for $input", ({ input, expected }) => {
+      const actual = toUpperCase(input);
+      expect(actual).toBe(expected);
+    });
   });
 
   describe("gerStringInfo for arg Random should", () => {
